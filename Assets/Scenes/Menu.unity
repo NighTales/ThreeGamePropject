@@ -16293,15 +16293,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1564923213}
     m_Modifications:
-    - target: {fileID: 1179209157048914, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
-      propertyPath: m_Name
-      value: BackgraundPanel
+    - target: {fileID: 291547238, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
+      propertyPath: normalColor.a
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 291547238, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
-      propertyPath: score
-      value: 
-      objectReference: {fileID: 11400000, guid: 645609ef648e60342ac46a5f6ef5d8bd,
-        type: 2}
+      propertyPath: selectColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 353299719, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -16345,6 +16344,10 @@ PrefabInstance:
     - target: {fileID: 654755750, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179209157048914, guid: 2ddc3ddb85d7c78419a301141f94a5b0, type: 3}
+      propertyPath: m_Name
+      value: BackgraundPanel
       objectReference: {fileID: 0}
     - target: {fileID: 114521711346074494, guid: 2ddc3ddb85d7c78419a301141f94a5b0,
         type: 3}

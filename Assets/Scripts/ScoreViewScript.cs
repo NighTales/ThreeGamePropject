@@ -9,6 +9,10 @@ using UnityEditor;
 public class ScoreViewScript : MonoBehaviour
 {
     public Button[] buttons = new Button[LoadLevel.countChallenge];
+
+    public Color normalColor;
+    public Color selectColor;
+
     public ScoreData score;
 
     public GameObject contentListView;
@@ -17,23 +21,21 @@ public class ScoreViewScript : MonoBehaviour
     public int currtentScore = -1;
     public List<GameObject> gameObjects = new List<GameObject>();
 
-    public RectTransform rectTransform;
+    Image[] images = new Image[LoadLevel.countChallenge];
 
-    float x;
-    float y;
-    float w;
-    float h;
+    private void Awake()
+    {
+        for (int i = 0; i < LoadLevel.countChallenge; i++)
+            images[i] = buttons[i].image;
+    }
 
     private void Start()
     {
-        rectTransform = contentListView.GetComponent<RectTransform>();
-        x = rectTransform.rect.x;
-        y = rectTransform.rect.y;
-        w = rectTransform.rect.width;
-        h = rectTransform.rect.height;
         buttons[0].onClick.AddListener(Button1_Click);
         buttons[1].onClick.AddListener(Button2_Click);
         buttons[2].onClick.AddListener(Button3_Click);
+
+
     }
 
     private void OnEnable()
@@ -41,12 +43,21 @@ public class ScoreViewScript : MonoBehaviour
         Button_Click(0);
     }
 
+    void DrowImage(int index)
+    {
+        for (int i = 0; i < LoadLevel.countChallenge; i++)
+            if (i != index)
+                images[i].color = normalColor;
+            else
+                images[i].color = selectColor;
+    }
     public void Button1_Click() => Button_Click(0);
     public void Button2_Click() => Button_Click(1);
     public void Button3_Click() => Button_Click(2);
 
     public void Button_Click(int index)
     {
+        DrowImage(index);
         if (currtentScore != -1)
         {
             foreach (var g in gameObjects)
@@ -68,7 +79,6 @@ public class ScoreViewScript : MonoBehaviour
             sfs.Number = (i + 1).ToString();
         }
 
-        //rectTransform.rect.Set(x, y, w, h);
 
         currtentScore = index;
     }

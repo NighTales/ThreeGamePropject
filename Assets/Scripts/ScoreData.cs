@@ -9,9 +9,10 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(fileName = "ScoreData", menuName = "Score Data")]
+[CreateAssetMenu(fileName = "ScoreData", menuName = "Score Data"), Serializable]
 public class ScoreData : ScriptableObject
 {
+    [SerializeField]
     public List<ScoreField>[] scores = new List<ScoreField>[LoadLevel.countChallenge];
 
     public void Save()
@@ -33,7 +34,9 @@ public class ScoreData : ScriptableObject
 [Serializable]
 public class ScoreField : IComparable<ScoreField>, IComparer<ScoreField>
 {
+    [SerializeField]
     public string name;
+    [SerializeField]
     public float score;
 
     public int Compare(ScoreField x, ScoreField y)

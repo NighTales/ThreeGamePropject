@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Durk
+  - SavePoint
+  - JumpPoint
+  - CameraChenger
+  - FallingTarget
+  - Target
+  - Force
+  - Shoot
+  - Look
+  - LookAndShoot
+  - Gun
+  - Position
+  - Pistol
+  - Rifle
+  - Bullet
+  - '-----------------------'
   layers:
   - Default
   - TransparentFX
@@ -13,9 +29,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
-  - 
+  - Player
+  - Trigger
+  - Magican
   - 
   - 
   - 
