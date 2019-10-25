@@ -9,8 +9,10 @@ using UnityEngine.UI;
 
 public class FinishUI_Script : MonoBehaviour
 {
-    public ScoreData score;
-    public int index;
+    //public ScoreData score;
+    //public int index;
+
+    public NewScoreData score2;
 
     public PauseScript pauseScript;
     public GameObject finishPanel;
@@ -32,8 +34,12 @@ public class FinishUI_Script : MonoBehaviour
         Cursor.visible = true;
         pauseScript.enabled = false;
 
-        score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = _relictusController.Energy.value });
-        score.Save();
+        //score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = _relictusController.Energy.value });
+        //score.Save();
+
+        score2.scores.Add(new ScoreField() { myname = LoadLevel.namePlayer, score = _relictusController.Energy.value });
+        score2.Save();
+
         _relictusController.Energy.value = 100;
 
     }

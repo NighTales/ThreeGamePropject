@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour
 {
-    public ScoreData score;
-    public int index;
+    //public ScoreData score;
+    //public int index;
+
+    public NewScoreData score2;
+
 
     public PauseScript pauseScript;
     public GameObject finishPanel;
@@ -57,8 +60,11 @@ public class ScoreScript : MonoBehaviour
         pauseScript.enabled = false;
         scoreTextFinish.text = (Score + Timer).ToString();
 
-        score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = Score + Timer });
-        score.Save();
+        //score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = Score + Timer });
+        //score.Save();
+
+        score2.scores.Add(new ScoreField() { myname = LoadLevel.namePlayer, score = Score + Timer });
+        score2.Save();
     }
 
     void Start()

@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Runtime;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
@@ -13,12 +18,17 @@ public class ScoreViewScript : MonoBehaviour
     public Color normalColor;
     public Color selectColor;
 
-    public ScoreData score;
+    //public ScoreData score;
+
+    public NewScoreData[] nscore;
 
     public GameObject contentListView;
     public GameObject scoreField;
 
     public int currtentScore = -1;
+    public Text DebugText;
+
+    [HideInInspector]
     public List<GameObject> gameObjects = new List<GameObject>();
 
     Image[] images = new Image[LoadLevel.countChallenge];
@@ -27,6 +37,21 @@ public class ScoreViewScript : MonoBehaviour
     {
         for (int i = 0; i < LoadLevel.countChallenge; i++)
             images[i] = buttons[i].image;
+
+        //for (int i = 0; i < nscore.Length; i++)
+        //{
+        //    var d = Resources.Load(dataFilename[i]);
+        //    Debug.Log(d.name + "  " + d.GetType() + " " + assets.ToString());
+        //}
+
+        foreach (var s in nscore)
+            s.Load();
+
+        //Get the path of the Game data folder
+        string m_Path = Application.dataPath;
+
+        //Output the Game data path to the console
+        DebugText.text = ("Path : " + m_Path);
     }
 
     private void Start()
@@ -67,19 +92,56 @@ public class ScoreViewScript : MonoBehaviour
 
             gameObjects.Clear();
         }
-        score.scores[index].Sort();
-        for (int i = 0; i < score.scores[index].Count; i++)
+
+      
+
+        for (int i = 0; i < nscore[index].scores.Count; i++)
         {
-            ScoreField f = score.scores[index][i];
+            ScoreField f = nscore[index].scores[i];
             var go = Instantiate(scoreField, contentListView.transform);
             gameObjects.Add(go);
             var sfs = go.GetComponent<ScoreFieldScript>();
-            sfs.Name = f.name;
+            sfs.Name = f.myname;
             sfs.Score = f.score.ToString();
             sfs.Number = (i + 1).ToString();
         }
 
 
         currtentScore = index;
+    }
+}
+
+public static class DataManager
+{
+    
+    public static void Save(NewScoreData data, string filepath)
+    {
+        if (File.Exists(filepath))
+        {
+            File.Delete(filepath);
+        }
+        using (var stream = File.CreateText(filepath))
+        {
+            foreach (var sc in data.scores)
+            {
+                string s = JsonUtility.ToJson(sc);
+                stream.WriteLine(s);
+            }
+        }
+        Debug.Log("Save filepath: " + filepath);
+    }
+
+    public static List<ScoreField> Load(string filepath)
+    {
+        List<ScoreField> scores = new List<ScoreField>();
+
+        string[] sa = File.ReadAllLines(filepath);
+
+        foreach (var s in sa)
+            scores.Add(JsonUtility.FromJson<ScoreField>(s));
+
+        Debug.Log("Load filepath: " + filepath);
+
+        return scores;
     }
 }

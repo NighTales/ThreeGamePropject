@@ -8,8 +8,11 @@ using UnityEngine.UI;
 
 public class FinishScript : MonoBehaviour
 {
-    public ScoreData score;
-    public int index;
+    //public ScoreData score;
+    //public int index;
+
+    public NewScoreData score2;
+
 
     public PauseScript pauseScript;
 
@@ -19,9 +22,9 @@ public class FinishScript : MonoBehaviour
     public Text textTimer;
     public Text timeText;
     public Text nameText;
-
+    public float maxtime = 60;
     private ConsoleScript _consoleScript;
-
+    
     private float _time = 0;
     private bool _finish = false;
     private bool f = true;
@@ -33,7 +36,7 @@ public class FinishScript : MonoBehaviour
 
         _finish = false;
         f = true;
-        _time = 0;
+        _time = maxtime;
 
         _consoleScript = console1.GetComponent<ConsoleScript>();
     }
@@ -42,7 +45,7 @@ public class FinishScript : MonoBehaviour
     {
         if (_consoleScript.active && !_finish)
         {
-            _time += Time.deltaTime;
+            _time -= Time.deltaTime;
             textTimer.text = (Math.Round( _time,2).ToString());
             if (f)
             {
@@ -54,7 +57,7 @@ public class FinishScript : MonoBehaviour
         {
             if (!f)
             {
-                _time = 0;
+                _time = maxtime;
                 textTimer.text = (Math.Round(_time, 2).ToString()); 
                 timerText.SetActive(false);
                 f = !f;
@@ -75,8 +78,11 @@ public class FinishScript : MonoBehaviour
         nameText.text = LoadLevel.namePlayer + ", " + nameText.text;
         pauseScript.enabled = false;
 
-        score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = _time });
-        score.Save();
+        //score.scores[index].Add(new ScoreField() { name = LoadLevel.namePlayer, score = _time });
+        //score.Save();
+
+        score2.scores.Add(new ScoreField() { myname = LoadLevel.namePlayer, score = _time });
+        score2.Save();
     }
 
     private void OnTriggerEnter(Collider other)

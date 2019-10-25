@@ -13,7 +13,7 @@ public static class LoadLevel
     public static event CameraHelper FieldOfViewChanged;
 
     public static string namePlayer = "Anonim";
-    public static string name;
+    public static string name { get; set; }
 
     public static float GlobalVolume
     {
@@ -335,9 +335,9 @@ public class MenuScript : MonoBehaviour {
 
         _selectLevels = new SelectLevel[]
         {
-            new SelectLevel(_minionGate, _minionNombers,minionLookAt,"RaycastAnim"),
-            new SelectLevel(_simulationGate, _simulationNombers,simmulationLookAt,"UICam"),
-            new SelectLevel(_templeGate, _templeNombers,templeLookAt,"RaycastParticle")
+            new SelectLevel(_minionGate, _minionNombers,minionLookAt,"01 - RaycastAnim"),
+            new SelectLevel(_simulationGate, _simulationNombers,simmulationLookAt,"02 - UICam"),
+            new SelectLevel(_templeGate, _templeNombers,templeLookAt,"03 - RaycastParticle")
         };
         nameField.text = LoadLevel.namePlayer + ".";
         SelectedIndex = 0;

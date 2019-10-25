@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LOADING!!.unity
     guid: 54c9727d287686744b493b951f307891
   - enabled: 1
-    path: Assets/Scenes/RaycastAnim.unity
+    path: Assets/Scenes/01 - RaycastAnim.unity
     guid: 93001ab71f6d76a41958bd58b7de12e1
   - enabled: 1
-    path: Assets/Scenes/RaycastParticle.unity
+    path: Assets/Scenes/03 - RaycastParticle.unity
     guid: 82886680fdd8c634395885d57136e537
   - enabled: 1
-    path: Assets/Scenes/UICam.unity
+    path: Assets/Scenes/02 - UICam.unity
     guid: 3d590efeef629e9429806909b4e0d6cb
   m_configObjects: {}

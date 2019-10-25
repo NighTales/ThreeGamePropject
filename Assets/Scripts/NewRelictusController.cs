@@ -131,7 +131,7 @@ public class NewRelictusController : MonoBehaviour
         z = Input.GetAxis("Vertical");
         y = Input.GetKeyDown(KeyCode.Space);
         lS = Input.GetKey(KeyCode.LeftShift);
-        v = Input.GetKeyDown(KeyCode.V);
+        v = Input.GetKey(KeyCode.V);
         shoot = Input.GetMouseButtonDown(0);
     }
     private void RelictusMove()
@@ -268,10 +268,7 @@ public class NewRelictusController : MonoBehaviour
         {
             Cam.cullingMask = _defaultLayerMask;
         }
-        if (v)
-        {
-            VisorPanel.SetActive(!VisorPanel.activeSelf);
-        }
+        VisorPanel.SetActive(v);
     }
 
     public void MakeSound()
@@ -301,7 +298,7 @@ public class NewRelictusController : MonoBehaviour
         }
     }
 
-    private async Task Delay(int miliseconddelay,Action action)
+    private async Task Delay(int miliseconddelay, Action action)
     {
         await Task.Delay(miliseconddelay);
         action.Invoke();
