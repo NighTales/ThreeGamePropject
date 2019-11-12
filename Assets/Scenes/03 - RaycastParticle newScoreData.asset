@@ -15,7 +15,11 @@ MonoBehaviour:
   filepath: \Resources\03-data.json
   scores:
   - myname: Anonim
+    score: 1333
+  - myname: Anonim
     score: 1135
+  - myname: Anonim
+    score: 1119
   - myname: Anonim
     score: 10
   - myname: Anonim

@@ -12,6 +12,10 @@ public class Jumper : MonoBehaviour {
     public float ForceGrav;
     public float Speed;
     public bool onGround = false;
+    [Range(0f,2f)]
+    public float height = 1.6f;
+
+
     private Vector3 _moveVector;
     private Vector3 _standartCamPos;
     private Vector3 _camOfset;
@@ -72,14 +76,13 @@ public class Jumper : MonoBehaviour {
         {
             _anim.SetBool("Move", false);
         }
-        onGround = Physics.Linecast(transform.position, transform.position + Physics.gravity.normalized * 1.5f, out var hit);
-        if (_controller.isGrounded)
+
+        onGround = Physics.Linecast(transform.position, transform.position + Physics.gravity.normalized * height, out _);
+        if (onGround)
         {
             _vertSpeed = 0;
             if (j)
-            {
                 _vertSpeed = _jumpSpeed;
-            }
         }
         _vertSpeed += _grav * Time.fixedDeltaTime;
         _moveVector = new Vector3(_moveVector.x * _speed * Time.fixedDeltaTime, _vertSpeed * Time.fixedDeltaTime,

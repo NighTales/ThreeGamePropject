@@ -42,6 +42,9 @@ public class NewRelictusController : MonoBehaviour
     public bool Fast;
     public GameObject ShootParticle;
     public CamScript camScript;
+    public bool onGround = false;
+    [Range(0f, 2f)]
+    public float height = 1.6f;
 
     private Animator _camAnim;
     private Animator _anim;
@@ -141,8 +144,8 @@ public class NewRelictusController : MonoBehaviour
             _anim.SetFloat("RunWalk", Mathf.Clamp(_moveVector.magnitude * _speed / (Speed * 2), 0, 1));
         else
             _anim.SetFloat("RunWalk", 0);
-
-        if (_controller.isGrounded)
+        onGround = Physics.Linecast(transform.position, transform.position + Physics.gravity.normalized * height, out _);
+        if (onGround)
         {
             _vertSpeed = 0;
             if (y)

@@ -30,14 +30,25 @@ public class FORCER : MonoBehaviour
         _forceTime = 1;
         
     }
-  
+
     void Update()
+    {
+        if (NRC.Energy.value >= 15)
+        {
+            q = Input.GetKeyDown(KeyCode.Q);
+            e = Input.GetKeyDown(KeyCode.E);
+            r = Input.GetKeyDown(KeyCode.R);
+            f = Input.GetKeyDown(KeyCode.F);
+        }
+    }
+    bool q, e, r, f;
+    void FixedUpdate()
     {
 
         Timer();
         if(NRC.Energy.value > 15)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (r)
             {
                 if (hitRb == false)
                 {//
@@ -54,7 +65,7 @@ public class FORCER : MonoBehaviour
                     _anim.SetBool("UseForce", true);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.F) && hitRb)
+            if (f && hitRb)
             {
                 Grab = false;
                 Throw = true;
@@ -62,7 +73,7 @@ public class FORCER : MonoBehaviour
                 _anim.SetInteger("Force", 1);
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (e)
             {
                 ForceType = 1;
                 ForceZone.SetActive(true);
@@ -70,7 +81,7 @@ public class FORCER : MonoBehaviour
                 _anim.SetInteger("Force", 1);
                 _anim.SetTrigger("ForceStart");
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (q)
             {
                 ForceType = -1;
                 ForceZone.SetActive(true);
@@ -128,7 +139,7 @@ public class FORCER : MonoBehaviour
         {
             NRC.Energy.value -= 0.5f;
             NRC.EnergyTime = 0;
-            _forceTime += Time.deltaTime;
+            _forceTime += Time.fixedDeltaTime;
         }
         else
         {
